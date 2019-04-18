@@ -3,9 +3,15 @@
 ''' A script for testing diverse things .... '''
 
 import argparse
+import sys
+import time
+
 import motion
 import naoqi
+import almath
 from naoqi import ALProxy
+from naoqi import ALBroker
+from naoqi import ALModule
 
 NAO_IP_WIRED = "169.254.129.144"
 NAO_IP_LABNET = "172.17.117.239"
@@ -14,9 +20,14 @@ NAO_DEF_PORT = 9559
 
 def main(robotIP, PORT=NAO_DEF_PORT) :
     
-    tts = ALProxy("ALTextToSpeech", robotIP, PORT)
-    tts.say("Hello ! I feel good today !")
+    proxTTS = ALProxy("ALTextToSpeech", robotIP, PORT)
+    proxMotion = ALProxy("ALMotion", robotIP, PORT)
+    proxPosture = ALProxy("ALRobotPosture", robotIP, PORT)
 
+    proxMotion.wakeUp()
+    
+
+    proxMotion.rest()
 
 
 
